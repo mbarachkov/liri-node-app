@@ -2,6 +2,12 @@ require("dotenv").config();
 var spotify = new Spotify(keys.spotify);
 
 
+var axios = require("axios");
+var spotify = require("node-spotify-api");
+var keys = require("./keys.js");
+var moment = require("moment")
+
+
 //using the node-spotify-api package on npm
 //`node liri.js spotify-this-song '<song name here>'`
 
@@ -42,6 +48,3 @@ var spotify = new Spotify(keys.spotify);
 //      * It should run `spotify-this-song` for "I Want it That Way," as follows the text in `random.txt`.
 //      * Edit the text in random.txt to test out the feature for movie-this and concert-this.
 //_______________________________________________________________
-
-
-

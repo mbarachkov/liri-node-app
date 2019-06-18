@@ -3,13 +3,27 @@ require("dotenv").config();
 // console.log(spotify)
 var moment = require("moment");
 
+// `concert-this`
+// `spotify-this-song`
+// `movie-this`
+// `do-what-it-says`
 
 
 
-var spotify = require("node-spotify-api");
+var Spotify = require("node-spotify-api");
 var keys = require("./keys.js");
 //using the node-spotify-api package on npm
 //`node liri.js spotify-this-song '<song name here>'`
+
+var spotify = new Spotify(keys.spotify);
+   
+  spotify.request('https://api.spotify.com/v1/tracks/7yCPwWs66K8Ba5lFuU2bcx')
+  .then(function(data) {
+    console.log(data); 
+  })
+  .catch(function(err) {
+    console.error('Error occurred: ' + err); 
+  });
 
 //* This will show the following information about the song in your terminal/bash window
 
@@ -32,7 +46,7 @@ axios.get("http://www.omdbapi.com/?t=" + movie + "&y=&plot=short&tomatoes=true&a
 
         if (process.argv[2] === "movie-this") {
             //          Title of the movie.
-            console.log(response.data.Title);
+            console.log(response.data.Title );
             //          Year the movie came out.
             console.log(response.data.Year);
             //          IMDB Rating of the movie.

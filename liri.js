@@ -23,36 +23,46 @@ var keys = require("./keys.js");
 
 var axios = require("axios");
 //using the axios package on npm
+
 // `node liri.js movie-this '<movie name here>'`
-var info = response.data;
-axios.get("http://www.omdbapi.com/?t=" + process.argv[2] + "&y=&plot=short&apikey=trilogy").then(
+
+var movie = process.argv.slice(3).join(" ");
+axios.get("http://www.omdbapi.com/?t=" + movie + "&y=&plot=short&tomatoes=true&apikey=trilogy").then(
     function (response) {
-//          Title of the movie.
-        console.log(info.Title);
-//        * Year the movie came out.
-        console.log(info.Year);
-//        * IMDB Rating of the movie.
-        console.log(info.imdbRating);
-//        * Rotten Tomatoes Rating of the movie.
-        console.log(info.tomatoRating);
-//        * Country where the movie was produced.
-        console.log(info.Country);
-//        * Language of the movie.
-        console.log(info.Language);
-//        * Plot of the movie.
-        console.log(info.Plot);
-//        * Actors in the movie.
-        console.log(info.Actors);
 
-
+        if (process.argv[2] === "movie-this") {
+            //          Title of the movie.
+            console.log(response.data.Title);
+            //          Year the movie came out.
+            console.log(response.data.Year);
+            //          IMDB Rating of the movie.
+            console.log(response.data.imdbRating);
+            //          Rotten Tomatoes Rating of the movie.
+            console.log(response.data.tomatoRating);
+            //          Country where the movie was produced.
+            console.log(response.data.Country);
+            //          Language of the movie.
+            console.log(response.data.Language);
+            //          Plot of the movie.
+            console.log(response.data.Plot);
+            //          Actors in the movie.
+            console.log(response.data.Actors);
+        }
+        //  If the user doesn't type a movie in, the program will output data for the movie 'Mr. Nobody.'
+        else {
+            axios.get("http://www.omdbapi.com/?t=Mr+Peabody&y=&plot=short&tomatoes=true&apikey=trilogy").then(
+                function (response) {
+                    console.log(response.data.Title);
+                    console.log(response.data.Year);
+                    console.log(response.data.imdbRating);
+                    console.log(response.data.tomatoRating);
+                    console.log(response.data.Country);
+                    console.log(response.data.Language);
+                    console.log(response.data.Plot);
+                    console.log(response.data.Actors);
+                })
+        }
     })
-
-
-//    * This will output the following information to your terminal/bash window:
-
-//        
-//  If the user doesn't type a movie in, the program will output data for the movie 'Mr. Nobody.'
-//______________________________________________________________
 
 
 

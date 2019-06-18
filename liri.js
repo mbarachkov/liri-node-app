@@ -1,13 +1,13 @@
 require("dotenv").config();
-var spotify = new Spotify(keys.spotify);
+// var spotify = new Spotify(keys.spotify);
+// console.log(spotify)
+var moment = require("moment");
 
 
-var axios = require("axios");
+
+
 var spotify = require("node-spotify-api");
 var keys = require("./keys.js");
-var moment = require("moment")
-
-
 //using the node-spotify-api package on npm
 //`node liri.js spotify-this-song '<song name here>'`
 
@@ -21,9 +21,15 @@ var moment = require("moment")
 //______________________________________________________________
 
 
-
+var axios = require("axios");
 //using the axios package on npm
 // `node liri.js movie-this '<movie name here>'`
+
+axios.get("http://www.omdbapi.com/?t=remember+the+titans&y=&plot=short&apikey=trilogy").then(
+    function (response) {
+        console.log("the movie's rating is: " + response.data);
+    })
+
 
 //    * This will output the following information to your terminal/bash window:
 

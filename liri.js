@@ -13,7 +13,8 @@ const input = process.argv.slice(3).join(" ");
 axios.get("https://rest.bandsintown.com/artists/" + input + "/events?app_id=codingbootcamp").then(
   function (response) {
     if (process.argv[2] === "concert-this") {
-      console.log(response.data[0]);
+      console.log("Venue: "+ response.data[0].venue.name + "\nCity: " + response.data[0].venue.city + 
+      "\nDate: " + moment(response.data[0].daytime).format("MM//DD/YYYY"));
     }
 
   })
@@ -55,16 +56,10 @@ if (command === "spotify-this" + (process.argv[3] === " ")) {
         const songTitle = data.tracks.items[i].name;
         const songUrl = data.tracks.items[i].preview_url;
         const songAlbum = data.tracks.items[i].album.name;
-        // console.log(data.tracks)
-        //* Artist(s)
-        console.log("Band: " + artistName + "\nSong: " + songTitle)
-        //* The song's name
-        console.log( + "Song: " + songTitle);
-        //* A preview link of the song from Spotify
-        console.log( + "Link to this song: " + songUrl)
-        //* The album that the song is from
-        console.log("Album: " + songAlbum)
-        console.log("\n------------------------------------")
+
+        console.log("Band: " + artistName + "\nSong: " + songTitle + "\nLink to this song: " + 
+        songUrl + "\nAlbum: " + songAlbum + "\n------------------------------------")
+        
       }
 
     })

@@ -9,8 +9,14 @@ var axios = require("axios");
 var Spotify = require("node-spotify-api");
 var keys = require("./keys.js");
 
+const input = process.argv.slice(3).join(" ");
+axios.get("https://rest.bandsintown.com/artists/" + input + "/events?app_id=codingbootcamp").then(
+  function (response) {
+    if (process.argv[2] === "concert-this") {
+      console.log(response.data[0]);
+    }
 
-
+  })
 
 var spotify = new Spotify(keys.spotify);
 const command = process.argv[2];
@@ -64,7 +70,7 @@ if (command === "spotify-this" + (process.argv[3] === " ")) {
     })
 }
 
-var input = process.argv.slice(3).join(" ");
+
 axios.get("http://www.omdbapi.com/?t=" + input + "&y=&plot=short&tomatoes=true&apikey=trilogy").then(
   function (response) {
     if (process.argv[2] === "movie-this") {
